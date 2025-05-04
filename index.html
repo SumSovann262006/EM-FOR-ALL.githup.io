@@ -1,0 +1,3638 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-wf-page="5d56cc02847b58277e980884"
+  data-wf-site="5d56cc02847b584c88980881"
+  data-wf-status="1"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- AOS CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://assets.website-files.com/5d56cc02847b584c88980881/css/ecommerce-ui-kit-prospero.webflow.e15da227c.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f6fa;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        background: #fff;
+
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 32px;
+      }
+      h1 {
+        color: #1a4b7c;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      .books-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 24px;
+      }
+      .book-card {
+        background: #fafafa;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        padding: 16px;
+        text-align: center;
+        transition: box-shadow 0.2s;
+      }
+      .book-card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      }
+      .rank {
+        background: #ff9900;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px auto;
+        font-size: 1.1em;
+      }
+      .book-cover {
+        width: 90px;
+        height: 130px;
+        object-fit: cover;
+        margin-bottom: 12px;
+        border-radius: 3px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      .title {
+        font-size: 1em;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 6px;
+        min-height: 38px;
+      }
+      .author {
+        font-size: 0.92em;
+        color: #555;
+        margin-bottom: 8px;
+      }
+      .price {
+        font-size: 1em;
+        color: #1a7c4b;
+        font-weight: bold;
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 12px;
+        }
+        .books-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+      }
+      input::placeholder {
+        position: relative;
+        left: 2rem;
+        font-size: 17px;
+        font-family: Khmer S4;
+      }
+
+      .product-list {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background-color: white;
+        border-radius: 0.5rem;
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+        max-height: 600px;
+        overflow-y: auto;
+        z-index: 1000;
+      }
+
+      .product-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .product-item:last-child {
+        border-bottom: none;
+      }
+
+      .product-item img {
+        width: 50px;
+        height: 50px;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      .product-info h6 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .product-info p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .input-group .form-control:focus {
+        box-shadow: none;
+        border-color: #86b7fe;
+      }
+      .view-button {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+        transition: all 0.4s ease;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .image-wrap:hover .view-button {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+
+      .button-small.white-small {
+        background-color: white;
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-weight: 500;
+        color: black;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .home-item-wrap img {
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+      }
+
+      img:hover {
+        transform: scale(1.03);
+      }
+      ul {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .footer-cta {
+        border-bottom: 1px solid #373636;
+      }
+      .single-cta i {
+        color: #ff5e14;
+        font-size: 30px;
+        float: left;
+        margin-top: 8px;
+      }
+      .cta-text {
+        padding-left: 15px;
+        display: inline-block;
+      }
+      .cta-text h4 {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .cta-text span {
+        color: #757575;
+        font-size: 15px;
+      }
+      .footer-content {
+        position: relative;
+        z-index: 2;
+      }
+      .footer-pattern img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 330px;
+        background-size: cover;
+        background-position: 100% 100%;
+      }
+      .footer-logo {
+        margin-bottom: 30px;
+      }
+      .footer-logo img {
+        max-width: 200px;
+      }
+      .footer-text p {
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: #7e7e7e;
+        line-height: 28px;
+      }
+      .footer-social-icon span {
+        color: #fff;
+        display: block;
+        font-size: 20px;
+        font-weight: 700;
+        font-family: "Poppins", sans-serif;
+        margin-bottom: 20px;
+      }
+      .footer-social-icon a {
+        color: #fff;
+        font-size: 16px;
+        margin-right: 15px;
+      }
+      .footer-social-icon i {
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        line-height: 38px;
+        border-radius: 50%;
+      }
+      .facebook-bg {
+        background: #3b5998;
+      }
+      .twitter-bg {
+        background: #55acee;
+      }
+      .google-bg {
+        background: #dd4b39;
+      }
+      .footer-widget-heading h3 {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      .footer-widget-heading h3::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        height: 2px;
+        width: 50px;
+        background: #ff5e14;
+      }
+      .footer-widget ul li {
+        display: inline-block;
+        ul {
+          margin: 0px;
+          padding: 0px;
+        }
+        .footer-section {
+          background: #151414;
+          position: relative;
+        }
+        .footer-cta {
+          border-bottom: 1px solid #373636;
+        }
+        .single-cta i {
+          color: #ff5e14;
+          font-size: 30px;
+          float: left;
+          margin-top: 8px;
+        }
+        .cta-text {
+          padding-left: 15px;
+          display: inline-block;
+        }
+        .cta-text h4 {
+          color: #fff;
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 2px;
+        }
+        .cta-text span {
+          color: #757575;
+          font-size: 15px;
+        }
+        .footer-content {
+          position: relative;
+          z-index: 2;
+        }
+        .footer-pattern img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 330px;
+          background-size: cover;
+          background-position: 100% 100%;
+        }
+        .footer-logo {
+          margin-bottom: 30px;
+        }
+        .footer-logo img {
+          max-width: 200px;
+        }
+        .footer-text p {
+          margin-bottom: 14px;
+          font-size: 14px;
+          color: #7e7e7e;
+          line-height: 28px;
+        }
+        .footer-social-icon span {
+          color: #fff;
+          display: block;
+          font-size: 20px;
+          font-weight: 700;
+          font-family: "Poppins", sans-serif;
+          margin-bottom: 20px;
+        }
+        .footer-social-icon a {
+          color: #fff;
+          font-size: 16px;
+          margin-right: 15px;
+        }
+        .footer-social-icon i {
+          height: 40px;
+          width: 40px;
+          text-align: center;
+          line-height: 38px;
+          border-radius: 50%;
+        }
+        .facebook-bg {
+          background: #3b5998;
+        }
+        .twitter-bg {
+          background: #55acee;
+        }
+        .google-bg {
+          background: #dd4b39;
+        }
+        .footer-widget-heading h3 {
+          color: #fff;
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 40px;
+          position: relative;
+        }
+        .footer-widget-heading h3::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -15px;
+          height: 2px;
+          width: 50px;
+          background: #ff5e14;
+        }
+        .footer-widget ul li {
+          display: inline-block;
+          float: left;
+          width: 50%;
+          margin-bottom: 12px;
+        }
+        .footer-widget ul li a:hover {
+          color: #ff5e14;
+        }
+        .footer-widget ul li a {
+          color: #878787;
+          text-transform: capitalize;
+        }
+        .subscribe-form {
+          position: relative;
+          overflow: hidden;
+        }
+        .subscribe-form input {
+          width: 100%;
+          padding: 14px 28px;
+          background: #2e2e2e;
+          border: 1px solid #2e2e2e;
+          color: #fff;
+        }
+        .subscribe-form button {
+          position: absolute;
+          right: 0;
+          background: #ff5e14;
+          padding: 13px 20px;
+          border: 1px solid #ff5e14;
+          top: 0;
+        }
+        .subscribe-form button i {
+          color: #fff;
+          font-size: 22px;
+          transform: rotate(-6deg);
+        }
+        .copyright-area {
+          background: #202020;
+          padding: 25px 0;
+        }
+        .copyright-text p {
+          margin: 0;
+          font-size: 14px;
+          color: #878787;
+        }
+        .copyright-text p a {
+          color: #ff5e14;
+        }
+        .footer-menu li {
+          display: inline-block;
+          margin-left: 20px;
+        }
+        .footer-menu li:hover a {
+          color: #ff5e14;
+        }
+        .footer-menu li a {
+          font-size: 14px;
+          color: #878787;
+        }
+        width: 50%;
+        margin-bottom: 12px;
+      }
+      .footer-widget ul li a:hover {
+        color: #ff5e14;
+      }
+      .footer-widget ul li a {
+        color: #878787;
+        text-transform: capitalize;
+      }
+      .subscribe-form {
+        position: relative;
+        overflow: hidden;
+      }
+      .subscribe-form input {
+        width: 100%;
+        padding: 14px 28px;
+        background: #2e2e2e;
+        border: 1px solid #2e2e2e;
+        color: #fff;
+      }
+      .subscribe-form button {
+        position: absolute;
+        right: 0;
+        background: #ff5e14;
+        padding: 13px 20px;
+        border: 1px solid #ff5e14;
+        top: 0;
+      }
+      .subscribe-form button i {
+        color: #fff;
+        font-size: 22px;
+        transform: rotate(-6deg);
+      }
+      .copyright-area {
+        background: #202020;
+        padding: 25px 0;
+      }
+      .copyright-text p {
+        margin: 0;
+        font-size: 14px;
+        color: #878787;
+      }
+      .copyright-text p a {
+        color: #ff5e14;
+      }
+      .footer-menu li {
+        display: inline-block;
+        margin-left: 20px;
+      }
+      .footer-menu li:hover a {
+        color: #ff5e14;
+      }
+      .footer-menu li a {
+        font-size: 14px;
+        color: #878787;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="bg-gray-900 text-white p-3 flex items-center justify-between mx-auto w-100"
+    >
+      <!-- Dashboard -->
+      <div class="text-xl font-semibold">
+        <img
+          src="../image_Project/logo_header.png"
+          alt=""
+          style="height: auto; width: 4rem; border-radius: 5px"
+        />
+      </div>
+      <!--Function-->
+      <div class="hidden md:block Function">
+        <ul
+          class="flex space-x-4 list-none"
+          style="font-family: khmer S4; position: relative; right: 4rem"
+        >
+          <li>
+            <a href="index.html" class="text-white font-khmer text-lg fs-5"
+              >ទំព័រដើម</a
+            >
+          </li>
+          <li>
+            <a
+              href="/style.html/About us.html"
+              class="text-white font-khmer text-lg fs-5"
+              >អំពីយើង</a
+            >
+          </li>
+          <li>
+            <a
+              href="style.html/Conditions.html"
+              class="text-white font-khmer text-lg fs-5"
+              >លក្ខខណ្ឌប្រើប្រាស់</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-white font-khmer text-lg fs-5"
+              >អភិបាលកិច្ច</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!--form search-->
+
+      <!-- Search Box Container -->
+      <div class="position-relative search-box w-100" style="max-width: 400px">
+        <div class="input-group shadow-sm rounded">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="fas fa-search text-muted"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control border-start-0"
+            placeholder="ស្វែងរកផលិតផល..."
+            id="searchInput"
+          />
+        </div>
+
+        <!-- Product List -->
+        <div class="product-list mt-2 shadow-sm" id="productList">
+          <a href="../style.html/pay1.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book1.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  កំណត់ហេតុពណ៌ស្វាយ ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay2.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book2.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ប្រតិទិនទស្សនៈ២២២ថ្ងៃ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay3.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book3.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  អំណាចកម្ម
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay4.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book4.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  អំណានជាអំណាច
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay5.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book5.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  កំណត់ហេតុពណ៌ស្វាយ ភាគ១
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay6.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book6.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  បុរសឈុតពណ៌សរ ភាគ១
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay7.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book7.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  បុរសឈុតពណ៌សរ ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay8.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book8.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  រស់ដោយប្រាជ្ញា ភាគ៥
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay9.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book9.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  រស់ដោយប្រាជ្ញា ភាគ៤
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay10.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book10.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  រស់ដោយប្រាជ្ញា ភាគ៣
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay11.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book11.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  រស់ដោយប្រាជ្ញា ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay12.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book12.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  រស់ដោយប្រាជ្ញា ភាគ១
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay13.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book13.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  កំណត់ត្រាគំនិត
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay14.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book14.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ជូនព្រលឹងមេដឹកនាំ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay15.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book15.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ដំណើរស្វែងរកខ្លួនឯង
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay16.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book16.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ប្រតិទិនទស្សនៈ៣៦៥ថ្ងៃ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay17.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book17.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  បណ្ដុំទស្សនៈ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay18.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book18.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  គំនិតរកស៊ី
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay19.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book19.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ១០៨ ចក្ខុវិស័យ គួច ម៉េងលី
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay20.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book20.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ភ្នំដងរែកទីពុំអាចភ្លេច
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay21.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book21.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  គំនិតជាកំណើត
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay22.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book22.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ផែនទីផ្នត់គំនិត
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay23.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book23.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  បុរសឈុតពណ៌សរ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay24.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book24.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ទន្សាយជានរណា?
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay25.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book25.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ប្រលោមចិត្ត
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay26.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book26.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  មនុស្សខ្មៅ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay27.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book27.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  កុលាបខ្មៅ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay28.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book28.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  កាពីទែនជីវិត ភាគ១
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay29.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book29.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ស្លាបមេយូរី
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay30.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book30.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  និស្ស័យ ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay31.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book31.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  កាពីទែនជីវិត ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay32.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book32.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  បាត់បង់តែមិនបោះបង់
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay33.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book33.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  នារីប្រពៃ ភាសាអងគ្លេស
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay34.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book34.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ស្អែកម្ដងទៀត
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay35.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book35.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  នកាល័យ ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay36.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book36.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  តាមប្រមាញឧក្រិដ្ឋជន
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay37.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book37.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ប្រលោមចិត្ត ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay38.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book38.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ស្នាមកាំបិត
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay39.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book39.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  សែងសុរិយា
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay40.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book40.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ដំណើរស្វែងរកខ្លួនឯង ក្ដីស្រមៃ ការផ្ដល់ឪ្យ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay41.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book41.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  នភាល័យ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay42.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book42.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ឥន្រ្ទរាជ ព្រះខ័ឌ្គរាជ្យ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay43.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book43.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  សំឡេងខ្សឹប
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay44.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book44.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  នភាល័យ ភាគ៣
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay45.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book45.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  នភាល័យ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay46.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book46.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ថ្ងៃថ្មីនៅតតែមាន
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay47.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book47.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  រលកបោកខ្សាច់
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay48.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book48.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ថ្ងៃថ្មីនៅតតែមាន ភាគ២
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay50.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book50.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ទីបញ្ចប់នៃយើងទាំងពីរ
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay51.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book51.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ស្នេហ៍ក្នុងអណ្ដាយភ្លើង
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay52.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book52.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  សង្ឃរា
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay53.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book53.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ថ្ងៃថ្មីនៅតតែមាន ភាគ៣
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href="../style.html/pay54.html">
+            <div class="product-item">
+              <img
+                src="../image_Project/book54.png"
+                alt="product"
+                style="width: 4rem; height: auto"
+              />
+              <div class="product-info">
+                <h6
+                  style="
+                    color: #1d1d1d;
+                    font-family: khmer S4;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1rem;
+                  "
+                >
+                  ថ្ងៃថ្មីនៅតតែមាន
+                </h6>
+                <p style="font-size: 18px; position: relative; top: 1rem">
+                  28,000៛
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Icons and Profile -->
+      <div class="flex items-center space-x-4">
+        <!-- Moon icon -->
+
+        <svg
+          class="w-6 h-6 text-gray-400 cursor-pointer"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+          />
+        </svg>
+
+        <!-- Notification bell with dot -->
+        <div class="relative">
+          <svg
+            class="w-6 h-6 text-gray-400 cursor-pointer"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+            />
+          </svg>
+          <span
+            class="absolute top-0 right-0 w-2 h-2 bg-orange-400 rounded-full"
+          ></span>
+        </div>
+
+        <!-- Profile (HIDE ON SMALL SCREENS) -->
+        <a href="#">
+          <div class="hidden md:flex items-center space-x-2">
+            <img
+              src="../image_Project/logo_header.png"
+              alt="Profile"
+              class="w-8 h-8 rounded-full"
+            />
+            <div>
+              <div class="text-sm font-medium">EM FOR ALL</div>
+              <div class="text-xs text-gray-400">ecommerceforall@mail.com</div>
+            </div>
+            <svg
+              class="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
+    </nav>
+
+    <div class="wrapper m0-100">
+      <div class="hero5 home-hero5">
+        <div class="hero5-image-wrap homepage-wrap">
+          <div class="content-wrap">
+            <div class="home-hero-text-wrap">
+              <div class="home-hero-wrap">
+                <div class="home-welcome-text-wrap">
+                  <div class="size3-text size3-full-clear">
+                    Welcome to<br />
+                  </div>
+                </div>
+                <div class="prospero-ui-kit-headline">EM FOR ALL<br /></div>
+                <div class="size3-text" style="font-family: khmer S4">
+                  សូមស្វាគមន៍មកកាន់ផ្សារអេឡិចត្រូនិចសម្រាប់អ្នកទាំងអស់គ្នា<br />
+                </div>
+              </div>
+              <div class="kit-hero-buttons-wrap">
+                <a
+                  href="/style.html/form in project.html"
+                  target="_blank"
+                  class="button-large blue-button w-inline-block"
+                >
+                  <div style="font-family: khmer S4; font-size: 20px">
+                    ចុះឈ្មោះជាមួយយើង
+                  </div>
+                  <img
+                    src="https://assets.website-files.com/5d56cc02847b584c88980881/5d56cc02847b5810029808a9_Arrow%402x.svg"
+                    alt=""
+                    class="button-arrow"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="home-hero-image-wrap"></div>
+        </div>
+
+        <div class="home-dark-wrap-section">
+          <div class="section">
+            <div class="wrapper">
+              <div class="content">
+                <div class="w-layout-grid content34-grid">
+                  <div
+                    id="w-node-7576fe20b1a1-7e980884"
+                    class="home-info-item-wrap"
+                  >
+                    <div class="home-deco-dot"></div>
+                    <div>
+                      <div
+                        class="text-label home-text-label"
+                        style="font-family: khmer S4; font-size: 20px"
+                      >
+                        គោលបំណងនៃការបង្កើត website 
+                      </div>
+                      <p
+                        class="paragraph-70"
+                        style="font-size: 13px; font-family: khmer S4"
+                      >
+                        ផ្តល់ភាពងាយស្រួល ដល់អតិថិជនក្នុងការស្វែងរក
+                        និងទិញសៀវភៅតាមប្រព័ន្ធអនឡាញ
+                        ដោយគ្មានការចំណាយពេលទៅហាងសៀវភៅផ្ទាល់។ ជំរុញការអាន
+                        ដោយផ្តល់ជម្រើសសៀវភៅចម្រុះដូចជា សៀវភៅសិក្សា
+                        សៀវភៅអភិវឌ្ឍន៍ខ្លួនឯង និងសៀវភៅកម្សាន្ត។ គាំទ្រអ្នកនិពន្ធ
+                        និងអ្នកចែកចាយសៀវភៅក្នុងស្រុក ដោយផ្តល់កន្លែងផ្សព្វផ្សាយ
+                        និងលក់សៀវភៅរបស់ពួកគេតាមអនឡាញ។
+                        ប្រើប្រាស់បច្ចេកវិទ្យាទំនើប
+                        ដើម្បីផ្ដល់បទពិសោធន៍ល្អដល់អ្នកប្រើប្រាស់ (User
+                        Experience) តាមរយៈ UI/UX ដែលសមស្រប។
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    id="w-node-7576fe20b1a8-7e980884"
+                    class="home-info-item-wrap"
+                  >
+                    <div class="home-deco-dot"></div>
+                    <div>
+                      <div
+                        class="text-label home-text-label"
+                        style="font-family: khmer S4; font-size: 20px"
+                      >
+                        អត្ថប្រយោជន៍នៃការទិញសៀវភៅតាមអនឡាញ
+                      </div>
+                      <p
+                        class="paragraph-70"
+                        style="font-size: 13px; font-family: khmer S4"
+                      >
+                        1 . ជ្រើសរើសសៀវភៅបានច្រើន (Wide Selection of Books):
+                        អ្នកអាចស្វែងរកសៀវភៅរាប់ពាន់ចំណងជើងគ្រប់ប្រភេទ ដូចជា
+                        សៀវភៅលក់ដាច់ជាងគេ សៀវភៅសិក្សា និងសៀវភៅវិជ្ជាជីវៈផ្សេងៗ។
+                        អ្នកមានជម្រើសច្រើនជាងការទៅហាងសៀវភៅផ្ទាល់។ <br />2.
+                        ស្វែងរក និងតម្រៀបសៀវភៅបានងាយស្រួល (Easy Search &
+                        Filter): អ្នកអាចស្វែងរកសៀវភៅដែលចង់បានយ៉ាងឆាប់រហ័ស
+                        ដោយប្រើប្រព័ន្ធស្វែងរក និងតម្រៀបតាមអ្នកនិពន្ធ
+                        ប្រភេទសៀវភៅ តម្លៃ ឬពិន្ទុវាយតម្លៃ។<br />
+                        3. ទូទាត់ប្រាក់យ៉ាងមានសុវត្ថិភាព (Secure Checkout):
+                        ការទិញសៀវភៅតាមអនឡាញមានប្រព័ន្ធទូទាត់ប្រាក់ដែលមានសុវត្ថិភាព
+                        និងងាយស្រួល ដោយមានជម្រើសច្រើនសម្រាប់អ្នកប្រើប្រាស់។
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    id="w-node-7576fe20b1af-7e980884"
+                    class="home-info-item-wrap"
+                  >
+                    <div class="home-deco-dot"></div>
+                    <div>
+                      <div
+                        class="text-label home-text-label"
+                        style="font-family: khmer S4; font-size: 20px"
+                      >
+                        លក្ខណៈពិសេសនៃគេហទំព័រ
+                      </div>
+                      <p
+                        class="paragraph-70"
+                        style="font-size: 13px; font-family: khmer S4"
+                      >
+                        គេហទំព័ររបស់យើងផ្តល់អនុសាសន៍សៀវភៅឲ្យអ្នកដោយផ្អែកលើចំណាប់អារម្មណ៍
+                        និងប្រវត្តិការស្វែងរករបស់អ្នក។
+                        វានឹងជួយឲ្យអ្នកស្វែងរកសៀវភៅថ្មីៗដែលសមនឹងចំណង់ចំណូលចិត្តរបស់អ្នកបានយ៉ាងងាយស្រួល។
+                      </p>
+                      <p
+                        class="paragraph-70"
+                        style="font-size: 13px; font-family: khmer S4"
+                      >
+                        មុនពេលទិញ អ្នកអាចមើលទំព័រដំបូងៗនៃសៀវភៅដើម្បីដឹងថា
+                        វាសមនឹងចំណង់ចំណូលចិត្តរបស់អ្នកឬទេ។
+                        វាជួយឲ្យអ្នកសម្រេចចិត្តបានច្បាស់លាស់ជាងមុន។
+                      </p>
+                      <p
+                        class="paragraph-70"
+                        style="font-size: 13px; font-family: khmer S4"
+                      >
+                        អ្នកអាចរក្សាទុកសៀវភៅដែលចង់ទិញនៅពេលក្រោយ
+                        ឬសៀវភៅសំណព្វរបស់អ្នក ទុកក្នុងបញ្ជីពិសេស
+                        ដើម្បីងាយស្រួលស្វែងរកនាពេលក្រោយ។
+                      </p>
+                      <p
+                        class="paragraph-70"
+                        style="font-size: 13px; font-family: khmer S4"
+                      >
+                        គេហទំព័ររបស់យើងត្រូវបានរចនាឡើងឲ្យអាចប្រើប្រាស់បានល្អលើគ្រប់ឧបករណ៍
+                        មិនថាជាកុំព្យូទ័រ ឬទូរស័ព្ទដៃ។
+                        អ្នកអាចទិញសៀវភៅបានគ្រប់ពេលវេលា និងគ្រប់ទីកន្លែង។
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fuid" style="position: relative; bottom: 4rem">
+      <div class="books-grid">
+        <!-- Book 1 -->
+        <a href="style.html/pay1.html">
+          <div class="book-card">
+            <div class="rank">#1</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book1.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              កំណត់ហេតុពណ៌ស្វាយ ភាគ២
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ ចាន់រស្មី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 2 -->
+        <a href="style.html/pay2.html">
+          <div class="book-card">
+            <div class="rank">#2</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book2.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ប្រតិទិនទស្សនៈ២២២ថ្ងៃ
+            </div>
+            <div class="author" style="font-family: khmer S4">លោក ឡាំ លីម</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 3 -->
+        <a href="style.html/pay3.html">
+          <div class="book-card">
+            <div class="rank">#3</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book3.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">អំណាចកម្ម</div>
+            <div class="author" style="font-family: khmer S4">លោក ឡាំ លីម</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 4 -->
+        <a href="style.html/pay4.html">
+          <div class="book-card">
+            <div class="rank">#4</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book4.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">អំណានជាអំណាច</div>
+            <div class="author" style="font-family: khmer S4">លោក ឡាំ​ លីម</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+
+        <!-- Book 5 -->
+        <a href="style.html/pay5.html">
+          <div class="book-card">
+            <div class="rank">#5</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book5.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              កំំណត់ហេតុពណ៌ស្វាយ ភាគ១
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ ចាន់រស្មី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 6 -->
+        <a href="style.html/pay6.html">
+          <div class="book-card">
+            <div class="rank">#6</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book6.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              បុរសឈុតពណ៌សរ ភាគ១
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ ចាន់រស្មី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+
+      <div class="books-grid mt-4">
+        <!-- Book 7 -->
+        <a href="style.html/pay7.html">
+          <div class="book-card">
+            <div class="rank">#7</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.4rem;
+              "
+              src="../image_Project/book7.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              បុរសឈុតពណ៌សរ ភាគ2
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ ចាន់រស្មី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 8 -->
+        <a href="style.html/pay8.html">
+          <div class="book-card">
+            <div class="rank">#8</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book8.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              រស់ដោយប្រាជ្ញា ភាគ៥
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក អួន សារ៉ាត
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 9 -->
+        <a href="style.html/pay9.html">
+          <div class="book-card">
+            <div class="rank">#9</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book9.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              រស់ដោយប្រាជ្ញា ភាគ៤
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក អួន សារ៉ាត
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 10 -->
+        <a href="style.html/pay10.html">
+          <div class="book-card">
+            <div class="rank">#10</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book10.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              រស់ដោយប្រាជ្ញា ភាគ៣
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក អួន សារ៉ាត
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 11 -->
+        <a href="style.html/pay11.html">
+          <div class="book-card">
+            <div class="rank">#11</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book11.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              រស់ដោយប្រាជ្ញា ភាគ២
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក អួន សារ៉ាត
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 12 -->
+        <a href="style.html/pay12.html">
+          <div class="book-card">
+            <div class="rank">12</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book12.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              រស់ដោយប្រាជ្ញា ភាគ១
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក អួន សារ៉ាត
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+
+      <div class="books-grid mt-4">
+        <!-- Book 13 -->
+        <a href="style.html/pay13.html">
+          <div class="book-card">
+            <div class="rank">13</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book13.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              កំណត់ត្រាគំនិត
+            </div>
+            <div class="author" style="font-family: khmer S4">លោក ឡាំ លីម</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 14 -->
+        <a href="style.html/pay14.html">
+          <div class="book-card">
+            <div class="rank">#14</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book14.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ជូនព្រលឹងមេដឹកនាំ
+            </div>
+            <div class="author" style="font-family: khmer S4">លោក ឡាំ លីម</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 15 -->
+        <a href="style.html/pay15.html">
+          <div class="book-card">
+            <div class="rank">#15</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book15.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ដំណើរស្វែងរកខ្លួនឯង
+            </div>
+            <div class="author" style="font-family: khmer S4">លោក ឡាំ លីម</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 16 -->
+        <a href="style.html/pay16.html">
+          <div class="book-card">
+            <div class="rank">#16</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book16.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ប្រតិទិនទស្សនៈ៣៦៥ថ្ងៃ
+            </div>
+            <div class="author" style="font-family: khmer S4">លោក ឡាំ លីម</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 17-->
+        <a href="style.html/pay17.html">
+          <div class="book-card">
+            <div class="rank">#17</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book17.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">បណ្ដុំទស្សនៈ</div>
+            <div class="author" style="font-family: khmer S4">
+              លោក គួច ម៉េងលី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 18 -->
+        <a href="style.html/pay18.html">
+          <div class="book-card">
+            <div class="rank">#18</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book18.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              គំនិតរកស៊ី គួច ម៉េងលី
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក គួច ម៉េងលី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+      <div class="books-grid mt-4">
+        <!-- Book 19 -->
+        <a href="style.html/pay19.html">
+          <div class="book-card">
+            <div class="rank">#19</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book19.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ១០៨ ចក្ខុវិស័យ គួច ម៉េងលី
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក គួច ម៉េងលី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 20 -->
+        <a href="style.html/pay20.html">
+          <div class="book-card">
+            <div class="rank">#20</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book20.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ភ្នំដងរែកទីពុំអាចភ្លេច
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក គួច ម៉េងលី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 21 -->
+        <a href="style.html/pay21.html">
+          <div class="book-card">
+            <div class="rank">#21</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book21.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">គំនិតជាកំណើត</div>
+            <div class="author" style="font-family: khmer S4">
+              លោក ទេព សុផានេត
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 22-->
+        <a href="style.html/pay22.html">
+          <div class="book-card">
+            <div class="rank">#22</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book22.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ផែនទីផ្នត់គំនិត
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក ឧកញ៉ា ជា តុងហ៊ួរ
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 23 -->
+        <a href="style.html/pay23.html">
+          <div class="book-card">
+            <div class="rank">#23</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book23.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">បុរសឈុតពណ៌សរ</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ ចាន់រស្មី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 24 -->
+        <a href="style.html/pay24.html">
+          <div class="book-card">
+            <div class="rank">#24</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book24.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              កំណត់ហេតុពណ៌ស្វាយ ភាគ២
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              ទន្សាយជានរណា?
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+      <div class="books-grid mt-4">
+        <!-- Book 25 -->
+        <a href="style.html/pay25.html">
+          <div class="book-card">
+            <div class="rank">#25</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book25.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">ប្រលោមចិត្ត</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ​ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 26 -->
+        <a href="style.html/pay26.html">
+          <div class="book-card">
+            <div class="rank">#26</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book26.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">មនុស្សខ្មៅ</div>
+            <div class="author" style="font-family: khmer S4">លោក ធឿន សុធា</div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 27 -->
+        <a href="style.html/pay27.html">
+          <div class="book-card">
+            <div class="rank">#27</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book27.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">កុលាបខ្មៅ</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ​ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 28-->
+        <a href="style.html/pay28.html">
+          <div class="book-card">
+            <div class="rank">#28</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book28.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              កាពីទែនជីវិត ភាគ១
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ថុន ថាវរី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 29 -->
+        <a href="style.html/pay29.html">
+          <div class="book-card">
+            <div class="rank">#29</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book29.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">ស្លាបមេយូរី</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 30 -->
+        <a href="style.html/pay30.html">
+          <div class="book-card">
+            <div class="rank">#30</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book30.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">និស្ស័យ ភាគ២</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ថុន ថាវរី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+      <div class="books-grid mt-4">
+        <!-- Book 31 -->
+        <a href="style.html/pay31.html">
+          <div class="book-card">
+            <div class="rank">#31</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book31.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              កាពីទែនជីវិត ភាគ២
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ថុន ថាវរី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 32 -->
+        <a href="style.html/pay32.html">
+          <div class="book-card">
+            <div class="rank">#32</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book32.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              បាត់បង់តែមិនបោះបង់
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ថុន ថាវរី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 33 -->
+        <a href="style.html/pay33.html">
+          <div class="book-card">
+            <div class="rank">#33</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book33.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              នាងប្រពៃ ភាសាអងគ្លេស
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ថុន ថាវរី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 34-->
+        <a href="style.html/pay34.html">
+          <div class="book-card">
+            <div class="rank">#34</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book34.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">ស្អែកម្ដងទៀត</div>
+            <div class="author" style="font-family: khmer S4">
+              លោក កែង សេងរដ្ឋា
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 35 -->
+        <a href="style.html/pay35.html">
+          <div class="book-card">
+            <div class="rank">#35</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book35.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">នភាល័យ</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 36 -->
+        <a href="style.html/pay36.html">
+          <div class="book-card">
+            <div class="rank">#36</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book36.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              តាមប្រមាញឧក្រិដ្ឋជន
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី អ៊ុច ថាវី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+      <div class="books-grid mt-4">
+        <!-- Book 37 -->
+        <a href="style.html/pay37.html">
+          <div class="book-card">
+            <div class="rank">#37</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book37.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ប្រលោមចិត្ត ភាគ២
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ​ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 38 -->
+        <a href="style.html/pay38.html">
+          <div class="book-card">
+            <div class="rank">#38</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book38.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">ស្នាមកាំបិត</div>
+            <div class="author" style="font-family: khmer S4">
+              លោក រៀម សុខចំរើន
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 39 -->
+        <a href="style.html/pay39.html">
+          <div class="book-card">
+            <div class="rank">#39</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book39.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">សែងសុរិយា</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ​ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 40-->
+        <a href="style.html/pay40.html">
+          <div class="book-card">
+            <div class="rank">#40</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book40.png"
+              alt="The Magic Feeling"
+            />
+            <div
+              class="title"
+              style="font-family: khmer S4; position: relative; right: 1rem"
+            >
+              ដំណើរស្វែងរកខ្លួនឯង ក្ដីស្រមៃ ការផ្ដល់ឪ្យ
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              លោក ឧកញ៉ា ជា តុងហ៊ួរ
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 41 -->
+        <a href="style.html/pay41.html">
+          <div class="book-card">
+            <div class="rank">#41</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book41.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">នភាល័យ</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ​ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 42 -->
+        <a href="style.html/pay42.html">
+          <div class="book-card">
+            <div class="rank">#42</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book42.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ឥន្រ្ទរាជ ព្រះខ័ឌ្គរាជ្យ ភាគ១
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកនិពន្ធ៖ ទីម សុឃៀង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+      <div class="books-grid mt-4">
+        <!-- Book 43 -->
+        <a href="style.html/pay43.html">
+          <div class="book-card">
+            <div class="rank">#43</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book43.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">សំឡេងខ្សឹប</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកនិពន្ធ៖ កែង សេងរដ្ឋា
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 44 -->
+        <a href="style.html/pay44.html">
+          <div class="book-card">
+            <div class="rank">#44</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book44.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">នភាល័យ ភាគ៣</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ​ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 45 -->
+        <a href="style.html/pay45.html">
+          <div class="book-card">
+            <div class="rank">#45</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book45.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">នភាល័យ</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ​ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 46-->
+        <a href="style.html/pay46.html">
+          <div class="book-card">
+            <div class="rank">#46</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: 13.5rem;
+              "
+              src="../image_Project/book46.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ថ្ងៃថ្មីនៅតតែមាន ភាគ១
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ថុន ថាវរី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 47 -->
+        <a href="style.html/pay47.html">
+          <div class="book-card">
+            <div class="rank">#47</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book47.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">រលកបោកខ្សាច់</div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ម៉ៅ សំណាង
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+        <!-- Book 48 -->
+        <a href="style.html/pay48.html">
+          <div class="book-card">
+            <div class="rank">#48</div>
+            <img
+              class="book-cover"
+              style="
+                position: relative;
+                left: 1.5rem;
+                width: 9rem;
+                height: auto;
+              "
+              src="../image_Project/book48.png"
+              alt="The Magic Feeling"
+            />
+            <div class="title" style="font-family: khmer S4">
+              ថ្ងៃថ្មីនៅតែមាន ភាគ២
+            </div>
+            <div class="author" style="font-family: khmer S4">
+              អ្នកស្រី ថុន ថាវរី
+            </div>
+            <div class="price">26,000៛</div>
+          </div></a
+        >
+      </div>
+    </div>
+
+    <div class="wrapper m0-100">
+      <div class="section">
+        <div class="w-layout-grid home-how-links-grid">
+          <div id="w-node-2e61a30bc3a6-7e980884" class="home-sections-label">
+            <div
+              class="size1-text size1-top-clear"
+              style="font-family: khmer S4; font-size: 25px"
+            >
+              សេវាកម្មរបស់យើង
+            </div>
+            <p class="paragraph-70" style="font-family: kh Battambang">
+              ក្រុមការងាររបស់យើងត្រៀមខ្លួនជានិច្ចដើម្បីជួយដោះស្រាយបញ្ហា
+              ឬឆ្លើយសំណួរនានារបស់អ្នក នៅគ្រប់ពេលវេលា។
+              យើងផ្តល់សេវាកម្មអតិថិជនតាមរយៈជជែកផ្ទាល់ (Live Chat), អ៊ីមែល
+              និងទូរស័ព្ទ ដើម្បីធានាថាអ្នកទទួលបានជំនួយភ្លាមៗនៅពេលត្រូវការ។
+            </p>
+          </div>
+          <div
+            id="w-node-ca47866b54b5-7e980884"
+            class="w-layout-grid homepage-layouts-grid"
+          >
+            <div id="w-node-9c865d9765a0-7e980884">
+              <div class="image-wrap">
+                <a
+                  href="style.html/Packaging Process.html"
+                  class="home-item-wrap home-outline-section-wrap w-inline-block"
+                >
+                  <div
+                    class="size4-text"
+                    style="font-family: khmer S4; font-size: 25px"
+                  >
+                    ការវិចខ្ចប់
+                  </div>
+                  <p class="paragraph-70" style="font-family: kh Battambang">
+                    ការវិចខ្ចប់ទំនិញគឺជាដំណើរការដែលទំនិញត្រូវបានបញ្ចូលក្នុងវេចខ្ចប់មុននឹងដឹកជញ្ជូនទៅឱ្យអតិថិជន
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div id="w-node-a40a09c4370c-7e980884">
+              <div class="image-wrap">
+                <a
+                  href="style.html/Order process.html"
+                  target="_blank"
+                  class="home-item-wrap home-outline-section-wrap w-inline-block"
+                >
+                  <div
+                    class="size4-text"
+                    style="font-family: khmer S4; font-size: 25px"
+                  >
+                    ដំណើរការនៃការបញ្ជាទិញ
+                  </div>
+                  <p class="paragraph-70" style="font-family: kh Battambang">
+                    ស្វែងរក និងជ្រើសរើសសៀវភៅដែលអ្នកចង់ទិញពីគេហទំព័រ។
+                    អ្នកអាចប្រើប្រព័ន្ធស្វែងរក ឬតម្រៀបតាមប្រភេទ អ្នកនិពន្ធ
+                    ឬតម្លៃបន្ថែមទៅក្នុងរទេះទំនិញ
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            <div id="w-node-ca47866b54b6-7e980884">
+              <div class="image-wrap">
+                <a
+                  href="style.html/Track goods.html"
+                  class="home-item-wrap home-outline-section-wrap w-inline-block"
+                >
+                  <div
+                    class="size4-text"
+                    style="font-family: khmer S4; font-size: 25px"
+                  >
+                    របៀបតាមដានទំនិញ
+                  </div>
+                  <p class="paragraph-70" style="font-family: kh Battambang">
+                    បន្ទាប់ពីអ្នកបញ្ជាទិញសៀវភៅ អ្នកនឹងទទួលបានលេខតាមដាន (Tracking
+                    Number) សម្រាប់តាមដានស្ថានភាពនៃការដឹកជញ្ជូន។
+                    អ្នកអាចប្រើលេខនេះដើម្បីពិនិត្យមើលថា
+                    ទំនិញរបស់អ្នកកំពុងស្ថិតនៅកន្លែងណា
+                    និងអាចដឹងពេលវេលាដែលទំនិញនឹងមកដល់។
+                    ការតាមដាននេះជួយអោយអ្នកមានភាពជឿជាក់
+                    និងទុកចិត្តលើសេវាកម្មដឹកជញ្ជូនរបស់យើង។
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div id="w-node-06532f10f285-7e980884">
+              <div class="image-wrap">
+                <a
+                  href="style.html/Money.html"
+                  class="home-item-wrap home-outline-section-wrap w-inline-block"
+                >
+                  <div
+                    class="size4-text"
+                    style="font-family: khmer S4; font-size: 25px"
+                  >
+                    របៀបបង់ប្រាក់
+                  </div>
+                  <p class="paragraph-70" style="font-family: kh Battambang">
+                    យើងផ្តល់ជម្រើសបង់ប្រាក់ច្រើនដើម្បីឲ្យអតិថិជនមានភាពងាយស្រួល
+                    និងទុកចិត្ត។ អ្នកអាចបង់ប្រាក់តាមបណ្តាញ (Online Payment)
+                    ដោយប្រើកាតធនាគារ (Visa/MasterCard), កាតធនាគារក្នុងស្រុក,
+                    ហ្វិនតេក (Wing, TrueMoney, Pi Pay)
+                    ឬបង់ប្រាក់ជាសាច់ប្រាក់ពេលទទួលទំនិញ (Cash on Delivery)។
+                    ប្រព័ន្ធទូទាត់របស់យើងមានសុវត្ថិភាពខ្ពស់
+                    ដើម្បីការពារព័ត៌មានផ្ទាល់ខ្លួន និងហិរញ្ញវត្ថុរបស់អ្នក។
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div id="w-node-eeba7d3c6551-7e980884">
+              <div class="image-wrap">
+                <a
+                  href="style.html/Shipping Process.html"
+                  target="_blank"
+                  class="home-item-wrap home-outline-section-wrap w-inline-block"
+                >
+                  <div
+                    class="size4-text"
+                    style="font-family: khmer S4; font-size: 25px"
+                  >
+                    ការដឹកជញ្ជូន
+                  </div>
+                  <p class="paragraph-70" style="font-family: kh Battambang">
+                    សៀវភៅដែលអ្នកបានបញ្ជាទិញនឹងត្រូវដឹកជញ្ជូនទៅដល់ផ្ទះរបស់អ្នកយ៉ាងឆាប់រហ័ស
+                    និងមានសុវត្ថិភាព។
+                    យើងសហការជាមួយក្រុមហ៊ុនដឹកជញ្ជូនដែលទុកចិត្តបាន
+                    ដើម្បីធានាថាផលិតផលរបស់អ្នកទៅដល់គោលដៅត្រឹមត្រូវ
+                    និងទាន់ពេលវេលា។
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer-section" style="position: relative; top: 9rem">
+        <div class="container-fluid bg-[#151414]">
+          <div class="footer-cta pt-5 pb-5">
+            <div class="row">
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta position-relative">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div class="cta-text">
+                    <h4
+                      style="
+                        position: relative;
+                        left: 0.2rem;
+                        top: 0.5rem;
+                        font-family: khmer s4;
+                        font-size: 20px;
+                        color: white;
+                      "
+                    >
+                      ទីតាំង
+                    </h4>
+                    <span
+                      style="
+                        font-family: khmer S4;
+                        position: relative;
+                        top: 0.5rem;
+                      "
+                      >ភូមិទំពូង ឃុំកាហែង ស្រុកសំរោងទង ខេត្តកំពង់ស្ពឺ</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="fas fa-phone"></i>
+                  <div class="cta-text">
+                    <h4
+                      style="
+                        position: relative;
+                        left: 0.2rem;
+                        top: 0.5rem;
+                        font-family: khmer s4;
+                        font-size: 20px;
+                        color: white;
+                      "
+                    >
+                      ទំនាកទំនងព័ត៍មានបន្ថែម
+                    </h4>
+                    <span style="position: relative; top: 0.5rem"
+                      >071 74 33 912/088 35 99 238</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                <div class="single-cta">
+                  <i class="far fa-envelope-open"></i>
+                  <div class="cta-text">
+                    <h4
+                      style="
+                        position: relative;
+                        left: 0.2rem;
+                        top: 0.5rem;
+                        font-size: 20px;
+                        color: white;
+                      "
+                    >
+                      Email
+                    </h4>
+                    <span style="position: relative; top: 0.5rem">
+                      sumsovann400@gmail.com</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-content pt-5 pb-5">
+            <div class="row" style="width: 100%">
+              <div class="col-xl-4 col-lg-4 mb-50">
+                <div class="footer-widget">
+                  <div class="footer-logo">
+                    <a href="index.html"
+                      ><img
+                        src="../image_Project/logo_header.png"
+                        class="img-fluid"
+                        alt="logo"
+                        style="border-radius: 10px; width: 8rem; height: auto"
+                    /></a>
+                  </div>
+                  <div class="footer-text">
+                    <p style="font-family: kh Battambang">
+                      សូមស្វាគមន៍មកកាន់ផ្សារអេឡិចត្រូនិចសម្រាប់អ្នកទាំងអស់គ្នា
+                      យើងរីករាយនិងការរិះគន់ក្នុងនៃន័យស្ថាបនាដើម្បីកែលម្អគេហទំព័រមួយនេះឪ្យមានល្អប្រសើជាងមុន
+                    </p>
+                  </div>
+                  <div class="footer-social-icon">
+                    <span>Follow us</span>
+                    <a href="https://web.facebook.com/sum.sovan.376"
+                      ><i class="fab fa-facebook-f facebook-bg"></i
+                    ></a>
+                    <a href="https://t.me/sumsovann262006"
+                      ><i class="fab fa-telegram twitter-bg"></i
+                    ></a>
+                    <a
+                      href="https://www.tiktok.com/@vann2006.com?_t=ZM-8w0q0WaHXvj&_r=1"
+                      ><i class="fab fa-tiktok google-bg"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                <div class="footer-widget">
+                  <div class="footer-widget-heading">
+                    <h3
+                      style="
+                        position: relative;
+                        left: 0.2rem;
+                        top: 0.5rem;
+                        font-family: khmer S4;
+                        font-size: 20px;
+                        color: white;
+                      "
+                    >
+                      ព័ត៍មានបន្ថែម
+                    </h3>
+                  </div>
+                  <ul style="font-family: khmer S4">
+                    <li><a href="index.html">ទំព័រដើម</a></li>
+                    <li><a href="style.html/About us.html">អំពីយើង</a></li>
+                    <li><a href="#">ទំនាកទំនងព័ត៍មានការលក់</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                <div
+                  style="
+                    max-width: 500px;
+                    margin: auto;
+                    padding: 2rem;
+                    text-align: center;
+                  "
+                >
+                  <h2
+                    style="
+                      font-family: 'Khmer S4';
+                      color: white;
+                      font-size: 20px;
+                    "
+                  >
+                    តាមដានការដឹកជញ្ជូន
+                  </h2>
+                  <input
+                    type="text"
+                    id="trackingId"
+                    placeholder="បញ្ចូលលេខតាមដាន"
+                    style="
+                      padding: 10px;
+                      width: 80%;
+                      font-size: 16px;
+                      border-radius: 8px;
+                      border: 1px solid #ccc;
+                    "
+                  />
+                  <button
+                    onclick="trackOrder()"
+                    style="
+                      margin-top: 1rem;
+                      padding: 10px 20px;
+                      font-size: 16px;
+                      font-family: khmer S4;
+                      background: #3498db;
+                      color: white;
+                      border: none;
+                      border-radius: 8px;
+                      cursor: pointer;
+                    "
+                  >
+                    តាមដាន
+                  </button>
+                  <div
+                    id="result"
+                    style="
+                      margin-top: 2rem;
+                      font-family: 'Khmer OS';
+                      color: #27ae60;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      function trackOrder() {
+        const id = document.getElementById("trackingId").value.trim();
+        const resultDiv = document.getElementById("result");
+
+        if (id === "") {
+          resultDiv.innerHTML = "សូមបញ្ចូលលេខតាមដាន!";
+          resultDiv.style.color = "red";
+          return;
+        }
+
+        resultDiv.style.color = "#27ae60";
+        resultDiv.innerHTML = `ស្ថានភាព: កំពុងដឹក (Tracking ID: ${id})`;
+      }
+    </script>
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const productList = document.getElementById("productList");
+      const productItems = productList.querySelectorAll(".product-item");
+
+      searchInput.addEventListener("input", function () {
+        const value = this.value.toLowerCase();
+
+        if (value.trim() === "") {
+          productList.style.display = "none"; // hide list if empty
+          return;
+        }
+
+        let hasMatch = false;
+        productItems.forEach((item) => {
+          const name = item.querySelector("h6").textContent.toLowerCase();
+          if (name.includes(value)) {
+            item.style.display = "flex";
+            hasMatch = true;
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        productList.style.display = hasMatch ? "block" : "none";
+      });
+    </script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
